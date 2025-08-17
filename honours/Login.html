@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <!--Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+<script>
+    const backgrounds = [
+      {bg:"linear-gradient(to right, #000000, #18183a, #10104c, #2c194a, #4c3171)", text:"white"},
+      {bg:"black",text:"yellow"}
+    ];
+
+    let index = 0;
+
+    function changeBackground() {
+        index = (index + 1) % backgrounds.length;
+        // Change body background
+        document.body.style.background = backgrounds[index].bg;
+        localStorage.setItem("themeIndex", index);
+    }
+    window.onload = function() {
+    const savedIndex = localStorage.getItem("themeIndex");
+    if (savedIndex !== null) {
+        index = parseInt(savedIndex);
+        document.body.style.background = backgrounds[index].bg;
+        document.body.style.color = backgrounds[index].text;
+    }
+};
+</script>
+<style>
+    body{
+        color:white;
+    }
+    .container{
+        position: relative;
+        top:50px;
+        background: linear-gradient(to right, rgb(103, 35, 113), #195860);
+        border-radius: 2px;
+        padding: 20px;
+        color: white;
+        border:1px solid white;
+        box-shadow: 5px 5px 10px rgba(255, 255, 255, 0.5);
+        width: 80%;
+        opacity: 0;               /* start invisible */
+        transform: translateY(150px); /* start slightly down */
+        animation: showBox 1.5s ease-in-out forwards; /* animate to visible */
+        transition: background 0.5s ease;
+    }
+    @keyframes showBox {
+        to {
+            opacity: 1;
+            transform: translateY(0); /* move to normal place */
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="nav-bar">
+    <div class="logo">
+        <img src="image.png" alt="Logo">
+    </div>
+    <!-- Hamburger button -->
+    <div class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('show')">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <!-- Navigation links -->
+    <div class="nav-links">
+        <a href="/Home.html">Home</a>
+        <a href="About.html">About</a>
+        <a href="/contact" class="nav-link disabled">Contact</a>
+        <a href="/Login.html">Login</a>
+        <a href="/Register.html">Register</a>
+        <a href="/logout" class="nav-link disabled">Logout</a>
+        <div class="toggle">
+            <a href="#"><i class="fa-sharp fa-solid fa-toggle-on" onclick="changeBackground()"></i></a>
+        </div>
+    </div>
+</div>
+
+<form bindsubmit="onSubmit" class="login-form">
+    <div class="container">
+        <h2 class="text-center text-white p-5">Login</h2>
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <div class="text-center"><button type="submit" class="btn btn-primary">Login</button></div>
+    </div>
+    
+</form>
+<script>
+  // Wait until the DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('.login-form');
+    const button = form.querySelector('button[type="submit"]');
+
+    // Create a message element dynamically
+    const message = document.createElement('p');
+    message.className = 'text-center mt-3 text-warning';
+    form.querySelector('.container').appendChild(message);
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault(); // prevent form submission
+
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      // Simple validation
+      if (!username || !password) {
+        message.textContent = 'Please enter both username and password!';
+        return;
+      }
+
+      // Disable button and show loading
+      button.disabled = true;
+      button.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Logging in...`;
+
+      // Simulate login API call (replace with real API call)
+      setTimeout(() => {
+        message.textContent = 'Login successful!'; // replace with real response
+        button.disabled = false;
+        button.textContent = 'Login';
+      }, 2000);
+    });
+  });
+</script>
+
+
+
+</body>
+</html>
+<!DOCTYPE html>

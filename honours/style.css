@@ -1,0 +1,106 @@
+
+
+
+body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to right, #000000, #18183a, #10104c, #2c194a, #4c3171);
+}
+
+    .nav-bar {
+        background-color: rgba(104, 104, 104, 0.3);
+        padding: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid rgb(198, 197, 197);
+        border-radius: 10px;
+        box-shadow: 5px 5px 10px rgba(198, 197, 197, 0.5);
+        position: relative;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 30px;
+    }
+
+    a {
+        color: whitesmoke;
+        text-decoration: none;
+        padding: 10px 15px;
+        transition: all 0.3s ease; /* <- smooth transition for hover effects */
+    }
+
+    a:hover {
+        background-color: rgba(117, 117, 117, 0.3);
+        border: 1px solid rgb(198, 197, 197) transparent;
+        border-radius: 5px;
+        color: rgb(71, 255, 178);
+    }
+
+    img {
+        height: 70px;
+        width: 70px;
+        border-radius: 10%;
+    }
+
+    /* Hamburger icon */
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        gap: 4px;
+    }
+
+    .hamburger div {
+        width: 25px;
+        height: 3px;
+        background: white;
+        border-radius: 2px;
+    }
+    .toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width:50px
+    }
+    
+    
+    /* Mobile styles */
+    @media (max-width: 768px) {
+        .nav-links {
+            display: none;
+            flex-direction: column;
+            background: rgba(50, 50, 50, 0.9);
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            padding: 20px;
+            border-radius: 5px;
+            width: 350px;
+            z-index: 1001;
+        }
+
+        .nav-links.show {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hamburger {
+            display: flex;
+        }
+    }
+
+    .p-7 {
+    padding: 15rem !important;
+}
+.nav-links .disabled {
+    pointer-events: none;   /* still disables click */
+    opacity: 0.6;           /* faded look instead of black */
+    color: #ffffff !important; /* keep it white */
+    cursor: not-allowed;    /* show disabled cursor */
+    position:relative;
+    top:10px;
+}
+
